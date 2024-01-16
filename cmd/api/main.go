@@ -4,6 +4,7 @@ import (
 	"image/png"
 	"image/color/palette"
 	"net/http"
+	"os"
 	"strconv"
 
 	"genart/ccxy"
@@ -43,11 +44,16 @@ func ccxyHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
+	listenStr, found := os.LookupEnv("GENART_LISTEN")
+	if !found {
+		listenStr = ":8090"
+	}
+
 	mux := http.NewServeMux()
 	mux.HandleFunc(
 		"GET /ccxy/size/{size}/constant/{constant}/colors/{colors}/",
 		ccxyHandler,
 	)
 
-	http.ListenAndServe("127.0.0.1:8090", mux)
+	http.ListenAndServe(listenStr, mux)
 }
