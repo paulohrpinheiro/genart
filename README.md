@@ -50,3 +50,11 @@ $ curl -v http://127.0.0.1:8090/ccxy/size/1000/constant/10/colors/100/ --output 
 ### The image
 
 ![Generatedimage](images/ccxy_size:1000_constant:10_colors:100.png)
+
+
+### Previous works (pt-br)
+
+* [Arte generativa com fórmula simples em Go](https://paulohrpinheiro.xyz/texts/go/2024-01-08-arte-generativa-formula-simples.html)
+* [Testando o novo mux no GO 1.22](https://paulohrpinheiro.xyz/texts/go/2024-01-04-testando-o-novo-mux-no-golang-1_22.html)
+* [Gerando imagens em GO com biblioteca padrão](https://paulohrpinheiro.xyz/texts/go/2019-02-18-gerando-imagens-em-go-com-biblioteca-padrao.html)
+* [ Lisp (racket scheme) programs to draw digital art](https://github.com/paulohrpinheiro/generative-art)
