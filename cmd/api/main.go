@@ -3,6 +3,7 @@ package main
 import (
 	"image/png"
 	"image/color/palette"
+	"log"
 	"net/http"
 	"os"
 	"strconv"
@@ -55,5 +56,6 @@ func main() {
 		ccxyHandler,
 	)
 
-	http.ListenAndServe(listenStr, mux)
+	fmt.Printf("Listening on %s\n", listenStr)
+	log.Fatal(http.ListenAndServe(listenStr, mux))
 }
