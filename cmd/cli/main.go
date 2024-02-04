@@ -6,7 +6,7 @@ import (
 	"image/color/palette"
 	"os"
 
-	"genart/ccxy"
+	"genart/formula"
 )
 
 const (
@@ -19,6 +19,7 @@ const (
 func main() {
 	colors := palette.WebSafe
 
+	formulaName := flag.String("formula", "ccxy", "formula to use")
 	fileName := flag.String("filename", defaultFileName, "filename to save image (.png)")
 	imageSize := flag.Int("size", defaultImageSize, "size of image")
 	constant := flag.Int("constant", defaultConstant, "constant for formula (c): c-c*x*y")
@@ -26,8 +27,9 @@ func main() {
 
 	flag.Parse()
 
-	newImage := ccxy.CcxyStruct{}
-	newImage.Init(*imageSize, *constant, *maxColors, colors)
+	newImage := formula.New()
+
+	newImage.Init(*formulaName, *imageSize, *constant, *maxColors, colors)
 	newImage.Draw()
 
 	f, err := os.Create(*fileName)

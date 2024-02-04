@@ -14,7 +14,7 @@ Generate images (patterns) from a simple formula:
 To get help:
 
 ```
-$ bin/genart --help
+$ bin/genart -help
 Usage of bin/genart:
   -colors int
     	number of colors (default 216)
@@ -22,6 +22,8 @@ Usage of bin/genart:
     	constant for formula (c): c-c*x*y (default 10)
   -filename string
     	filename to save image (.png) (default "formulaimg.png")
+  -formula string
+    	formula to use (default "ccxy")
   -size int
     	size of image (default 1000)
 ```
@@ -51,6 +53,34 @@ $ curl -v http://127.0.0.1:8090/ccxy/size/1000/constant/10/colors/100/ --output 
 
 ![Generatedimage](images/ccxy_size:1000_constant:10_colors:100.png)
 
+#### Another images
+
+##### formula: ccxy, size:1000, constant:20, colors:200
+
+```
+$ curl -v http://localhost:8090/ccxy/size/1000/constant/20/colors/200/ --output images/ccxy_size:1000_constant:20_colors:200.png
+$ bin/genart -formula=ccxy -size=1000 -constant=20 -colors=200 -filename=images/ccxy_size:1000_constant:20_colors:200.png
+```
+
+![Formula ccxy, size 1000, constant 20, colors 200](images/ccxy_size:1000_constant:20_colors:200.png)
+
+##### formula: xcyc, size:1000, constant:2, colors:70
+
+```
+$ curl -v http://localhost:8090/xcyc/size/1000/constant/2/colors/70/ --output images/xcyc_size:1000_constant:2_colors:70.png
+$ bin/genart -formula=xcyc -size=1000 -constant=2 -colors=70 -filename=images/xcyc_size:1000_constant:2_colors:70.png
+```
+
+![Formula xcyc, size 1000, constant 2, colors 70](images/xcyc_size:1000_constant:2_colors:70.png)
+
+##### formula: ccxy, size:1000, constant:2, colors:70
+
+```
+$ curl -v http://localhost:8090/ccxy/size/1000/constant/2/colors/70/ --output images/ccxy_size:1000_constant:2_colors:70.png
+$ bin/genart -formula=ccxy -size=1000 -constant=2 -colors=70 -filename=images/ccxy_size:1000_constant:2_colors:70.png
+```
+
+![Formula ccxy, size 1000, constant 2, colors 70](images/ccxy_size:1000_constant:2_colors:70.png)
 
 ### Previous works (pt-br)
 

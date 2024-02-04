@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"image/png"
 	"image/color/palette"
 	"log"
@@ -8,7 +9,7 @@ import (
 	"os"
 	"strconv"
 
-	"genart/ccxy"
+	"genart/formula"
 )
 
 func sendError(w http.ResponseWriter, msg string) {
@@ -17,7 +18,8 @@ func sendError(w http.ResponseWriter, msg string) {
 	return
 }
 
-func ccxyHandler(w http.ResponseWriter, r *http.Request) {
+func formulaHandler(w http.ResponseWriter, r *http.Request) {
+	formulaName := r.PathValue("formulaName")
 	size, err := strconv.Atoi(r.PathValue("size"))
 	if err != nil {
 		sendError(w, "Invalid size value")
@@ -32,12 +34,12 @@ func ccxyHandler(w http.ResponseWriter, r *http.Request) {
 
 	colors, err := strconv.Atoi(r.PathValue("colors"))
 	if err != nil {
-		sendError(w, "Invalid colors value")
+			sendError(w, "Invalid colors value")
 		return
 	}
 
-	newImage := ccxy.CcxyStruct{}
-	newImage.Init(size, constant, colors, palette.WebSafe)
+	newImage := formula.New()
+	newImage.Init(formulaName, size, constant, colors, palette.WebSafe)
 	newImage.Draw()
 
 	w.Header().Set("Content-Type", "image/png")
@@ -52,8 +54,8 @@ func main() {
 
 	mux := http.NewServeMux()
 	mux.HandleFunc(
-		"GET /ccxy/size/{size}/constant/{constant}/colors/{colors}/",
-		ccxyHandler,
+		"GET /{formulaName}/size/{size}/constant/{constant}/colors/{colors}/",
+		formulaHandler,
 	)
 
 	fmt.Printf("Listening on %s\n", listenStr)
